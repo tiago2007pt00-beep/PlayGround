@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0c0d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%230b0c0d' stroke='%23d44b3f'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23d44b3f'/%3E%3C/svg%3E" />
+  <title>THE RED-EYE — Never Fall Asleep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="The Red-Eye início">
+        <span class="brand-mark"><i></i></span>
+        <span class="brand-name">THE <b>RED-EYE</b><small>NEVER FALL ASLEEP</small></span>
+      </a>
+      <div class="session-meta"><span class="live-dot"></span><span id="sessionLabel">VIGÍLIA LOCAL</span><span class="meta-divider"></span><span>NOITE 01</span></div>
+      <button class="sound-toggle" id="soundToggle" aria-label="Alternar som"><span class="sound-icon">♪</span><span>SOM <b id="soundState">ON</b></span></button>
+    </header>
+
+    <main class="layout">
+      <aside class="left-rail">
+        <div class="chapter-label"><span>CAPÍTULO 01</span><span class="red-line"></span></div>
+        <h1>A NOITE<br />NÃO <em>ACABA.</em></h1>
+        <p class="intro">Cinco acordados.<br />Uma coisa à espera.<br /><strong>Não feches os olhos.</strong></p>
+        <div class="objective-card">
+          <div class="card-kicker"><span class="tiny-icon">✳</span> OBJETIVO</div>
+          <p>Sobrevive até às <b>06:00</b>.<br />Mantém-te acordado. Não deixes que ele te encontre a dormir.</p>
+          <div class="objective-progress"><span id="objectiveFill"></span></div>
+          <div class="progress-caption"><span>VIGÍLIA</span><b id="objectivePercent">0%</b></div>
+        </div>
+        <div class="survivors-block">
+          <div class="section-heading"><span>NO QUARTO</span><span id="aliveCount">05 / 05</span></div>
+          <div class="survivor-list" id="survivorList">
+            <div class="survivor"><span class="avatar">M</span><span class="survivor-name">MARTA <small>tu</small></span><i class="status-self"></i></div>
+            <div class="survivor"><span class="avatar">L</span><span class="survivor-name">LUÍS</span><i class="status-dot"></i></div>
+            <div class="survivor"><span class="avatar">I</span><span class="survivor-name">INES</span><i class="status-dot"></i></div>
+            <div class="survivor"><span class="avatar">R</span><span class="survivor-name">RAFA</span><i class="status-dot"></i></div>
+            <div class="survivor"><span class="avatar">T</span><span class="survivor-name">TOMÁS</span><i class="status-dot"></i></div>
+          </div>
+          <p class="multiplayer-note"><span>◉</span> 1 ASSASSINO ENTRE NÓS</p>
+        </div>
+        <div class="left-footer"><span>PROTOCOLO DE SONO <b>v.01.06</b></span><span>PT / EN</span></div>
+      </aside>
+
+      <section class="play-area" aria-label="Área de jogo">
+        <div class="scene-frame" id="sceneFrame">
+          <canvas id="scene" aria-label="Vista em primeira pessoa do quarto durante a noite"></canvas>
+          <div class="scene-vignette"></div>
+          <div class="scene-topline"><span><i></i> CÂMARA 01 — QUARTO</span><span id="clock">00:47 AM</span></div>
+          <div class="room-label" id="roomLabel"><span class="label-line"></span><span>CASA VELHA · 3.º ANDAR</span></div>
+          <div class="eye-warning" id="eyeWarning"><span class="warning-symbol">!</span><span>ELE ESTÁ A OLHAR</span></div>
+          <div class="center-reticle" id="reticle"><i></i></div>
+          <div class="start-overlay" id="startOverlay">
+            <div class="overlay-stamp">RELATÓRIO DE INCIDENTE <b>№ 006</b></div>
+            <p class="eyebrow">A ÚLTIMA NOITE</p>
+            <h2>FICA<br /><em>ACORDADO.</em></h2>
+            <p class="start-copy">A luz vai falhar. Os outros vão adormecer.<br />Tu só precisas de aguentar até ao amanhecer.</p>
+            <button class="start-button" id="startButton"><span>INICIAR VIGÍLIA</span><b>↗</b></button>
+            <div class="key-hint">OU PRIME <kbd>ESPAÇO</kbd></div>
+          </div>
+          <div class="scene-bottomline"><span id="locationText">QUARTO 03 <i>•</i> 02:13</span><span class="drag-hint">MOVER RATO PARA OLHAR</span></div>
+          <div class="flash-overlay" id="flashOverlay"></div>
+        </div>
+        <div class="lower-bar">
+          <div class="time-readout"><span class="readout-icon">◷</span><div><small>ATÉ AO AMANHECER</small><b id="timeLeft">05:13</b></div></div>
+          <div class="night-progress"><div class="night-progress-label"><span>00:47</span><span>06:00</span></div><div class="night-track"><span id="nightFill"></span><i></i></div></div>
+          <div class="threat-readout"><span class="threat-eye">◉</span><div><small>AMEAÇA</small><b id="threatLabel">INDETERMINADA</b></div></div>
+        </div>
+      </section>
+
+      <aside class="right-rail">
+        <div class="monitor-head"><span>ESTADO VITAL</span><span class="monitor-code">SYS. 04</span></div>
+        <div class="vitals">
+          <div class="vital-row"><div class="vital-title"><span class="vital-symbol sleep">◒</span><span>SONOLÊNCIA</span><b id="sleepValue">24%</b></div><div class="meter"><span class="sleep-meter" id="sleepMeter"></span><i></i></div><small id="sleepHint">SEGURA-TE ACORDADO</small></div>
+          <div class="vital-row"><div class="vital-title"><span class="vital-symbol panic">⌁</span><span>PÂNICO</span><b id="panicValue">08%</b></div><div class="meter"><span class="panic-meter" id="panicMeter"></span><i></i></div><small id="panicHint">RESPIRA DEVAGAR</small></div>
+        </div>
+        <div class="divider"></div>
+        <div class="inventory-head"><span>O QUE TENS</span><span id="inventoryCount">03</span></div>
+        <div class="inventory">
+          <div class="inventory-item"><span class="item-icon coffee">▤</span><span><b>Café frio</b><small>+ acordar</small></span><kbd>1</kbd></div>
+          <div class="inventory-item"><span class="item-icon battery">ϟ</span><span><b>Lanterna</b><small>+ afastar</small></span><kbd>2</kbd></div>
+          <div class="inventory-item"><span class="item-icon radio">⌁</span><span><b>Rádio</b><small>+ concentrar</small></span><kbd>3</kbd></div>
+        </div>
+        <div class="divider"></div>
+        <div class="action-heading"><span>AÇÕES RÁPIDAS</span><span class="action-sub">ESCOLHE BEM</span></div>
+        <button class="action-button" id="coffeeAction"><span class="action-icon">▤</span><span><b>Beber café</b><small>Reduz sonolência</small></span><kbd>1</kbd></button>
+        <button class="action-button" id="flashAction"><span class="action-icon flash-icon">ϟ</span><span><b>Acender lanterna</b><small>Assusta a presença</small></span><kbd>2</kbd></button>
+        <button class="action-button" id="radioAction"><span class="action-icon radio-icon">⌁</span><span><b>Sintonizar rádio</b><small>Recupera o foco</small></span><kbd>3</kbd></button>
+        <button class="action-button breathe" id="breatheAction"><span class="action-icon">◎</span><span><b>Respirar fundo</b><small>Reduz o pânico</small></span><kbd>Q</kbd></button>
+        <div class="tip-card" id="tipCard"><span class="tip-spark">✦</span><p><b>NOTA</b><br /><span id="tipText">Se ouvires o teu nome no rádio, não respondas.</span></p></div>
+        <div class="right-footer"><span>F1 <b>CONTROLOS</b></span><span>ESC <b>PAUSA</b></span></div>
+      </aside>
+    </main>
+
+    <div class="toast" id="toast" role="status"></div>
+    <div class="modal hidden" id="modal"><div class="modal-card"><span class="modal-kicker">THE RED-EYE · REGISTO</span><button class="modal-close" id="modalClose">×</button><h2 id="modalTitle">PAUSA</h2><p id="modalBody">A noite espera.</p><button class="modal-primary" id="modalPrimary">RETOMAR</button></div></div>
+    <footer class="site-footer"><span>THE RED-EYE <i>©</i> 2025</span><span>UM JOGO SOBRE O MEDO DE FECHAR OS OLHOS</span><span>ÁUDIO <b id="footerSound">ATIVO</b> <i>·</i> BUILD 0.6.1</span></footer>
+  </div>
+  <script src="./game.js"></script>
+</body>
+</html>
